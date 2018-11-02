@@ -1,7 +1,3 @@
-#----------------------------------------------------------------------------#
-# Imports
-#----------------------------------------------------------------------------#
-
 from flask import Flask, render_template, request, url_for, redirect, session, send_file
 from flask_migrate import Migrate
 from tempfile import NamedTemporaryFile
@@ -16,7 +12,6 @@ logged_in=False
 db.create_all()
 
 Migrate(app,db)
-
 
 @app.route('/home')
 def home():
@@ -38,15 +33,6 @@ def login():
         else:
            return redirect(url_for("login"))
     return render_template('login.html', form =form)
-
-
-#@app.route('/register')
-#def register():
-#    session['email']= form.email.data
-#    session['password']= form.password.data
-#    if(form.validate_on_submit()):
-#        return render_template(url_for("logged_in"))
-#    return render_template('login.html', form=form)
 
 @app.route('/logged_in')
 def logged_in():
@@ -113,18 +99,5 @@ def download_page():
     pdf=SimpleInvoice(invoice)
     pdf.gen("invoice.pdf",generate_qr_code=True)
 
-
-#----------------------------------------------------------------------------#
-# Launch.
-#----------------------------------------------------------------------------#
-
-# Default port:
 if __name__ == '__main__':
     app.run(debug= True)
-
-# Or specify port manually:
-'''
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-'''
