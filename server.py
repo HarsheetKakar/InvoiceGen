@@ -3,41 +3,12 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, url_for, redirect, session
-from flask_wtf import FlaskForm
-from wtforms import TextField,SubmitField,PasswordField,IntegerField,SelectField
-from wtforms.validators import Email,DataRequired,EqualTo,Length
 from flask_migrate import Migrate
 from tempfile import NamedTemporaryFile
 from InvoiceGenerator.api import Invoice,Item,Client,Provider,Creator
+from forms import LoginForm, InvoiceForm, SignupForm
 
 logged_in=False
-
-##################FORMS##############
-class LoginForm(FlaskForm):
-    email=TextField("Email Address",validators=[DataRequired(),Email()])
-    password=PasswordField("Enter Password",validators=[DataRequired()])
-    submit= SubmitField("Login")
-
-class SignupForm (FlaskForm):
-    fname= TextField("First Name: ", validators=[DataRequired()])
-    lname= TextField("Last Name: ",validators=[DataRequired()])
-    email= TextField("Email: ",validators=[DataRequired(),Email()])
-    password= PasswordField("Password: ",validators=[DataRequired()])
-    confirm_password= PasswordField("Confirm password: ",validators=[EqualTo('password', message="password match")])
-    gstnumber= IntegerField("GST Number: ")
-    companyname= TextField("Company Name: ",validators=[DataRequired()])
-    phone= IntegerField("Phone: ")
-    address= TextField("Address: ", validators=[DataRequired()])
-    submit=SubmitField("Submit")
-
-class InvoiceForm(FlaskForm):
-    client= TextField("Client:",validators=[DataRequired()])
-    creator=TextField("Creator:",validators=[DataRequired()])
-    item_name=TextField("Item name:")
-    price= IntegerField("Price of One Unit:")
-    quantity= IntegerField("Quantity")
-    submit=SubmitField("Create Invoice")
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY']="mykey"
