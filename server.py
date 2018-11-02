@@ -93,7 +93,7 @@ def invoice():
             invoice.add_item(Item(session['quantity'],session['price'],session['item_name']))
             from InvoiceGenerator.pdf import SimpleInvoice
             pdf=SimpleInvoice(invoice)
-            pdf.gen("invoice.pdf",generate_qr_code=False)
+            pdf.gen("invoice.pdf",generate_qr_code=True)
             return send_file("invoice.pdf")
     else:
         return redirect(url_for('login'))
