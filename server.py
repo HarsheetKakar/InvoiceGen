@@ -7,50 +7,14 @@ from flask_migrate import Migrate
 from tempfile import NamedTemporaryFile
 from InvoiceGenerator.api import Invoice,Item,Client,Provider,Creator
 from forms import LoginForm, InvoiceForm, SignupForm
+from setupdb import Our_customer,db
+
+db.create_all()
 
 logged_in=False
 
 app = Flask(__name__)
 app.config['SECRET_KEY']="mykey"
-
-from flask_sqlalchemy import SQLAlchemy
-import os
-
-x=os.path.abspath(os.path.dirname(__file__))
-
-app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///"+os.path.join(x,'data.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-db = SQLAlchemy(app)
-
-
-
-################DATABASE###############
-class Our_customer(db.Model):
-    __tablename__ = 'Our_customer'
-
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(120))
-    email = db.Column(db.String(120))
-    password = db.Column(db.String(30))
-    gstnumber = db.Column(db.Integer())
-    total_receivables = db.Column(db.Integer())
-    total_payable = db.Column(db.Integer())
-    companyname = db.Column(db.String(120))
-    address= db.Column(db.String(120))
-    phone= db.Column(db.Integer())
-
-    #def __init__(self,name,email,password,
-    #             gstnumber,total_receivables,total_payable
-    #             companyname,address,phone):
-    #    self.name=name
-    #    self.email=email
-    #    self.password=password
-    #    self.
-
-db.create_all()
-
-Migrate(app,db)
-
 
 @app.route('/home')
 def home():
