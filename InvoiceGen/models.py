@@ -1,6 +1,14 @@
-from InvoiceGen import db
+from InvoiceGen import db,app,login_manager
+from flask_login import UserMixin
+from flask_bcrypt import Bcrypt
 
-class Our_customer(db.Model):
+hash=Bcrypt(app)
+
+@login_manager.user_loader
+def load_user(userid):
+    return Our_customer.query.get(userid)
+
+class Our_customer(db.Model,UserMixin):
     __tablename__ = 'Our_customer'
 
     id = db.Column(db.Integer(), primary_key=True)
@@ -14,6 +22,8 @@ class Our_customer(db.Model):
     address= db.Column(db.String(120))
     phone= db.Column(db.Integer())
 
+    def check_password(self,password):
+        return hash.check_password_hash(self.password, password)
 # class Items(db.Model):
 #     pass
 #

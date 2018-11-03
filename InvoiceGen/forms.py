@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import TextField,SubmitField,PasswordField,IntegerField,SelectField
 from wtforms.validators import Email,DataRequired,EqualTo,Length
+from wtforms import ValidationError
 
 class LoginForm(FlaskForm):
     email=TextField("Email Address",validators=[DataRequired(),Email()])
@@ -18,6 +19,10 @@ class SignupForm (FlaskForm):
     phone= IntegerField("Phone: ")
     address= TextField("Address: ", validators=[DataRequired()])
     submit=SubmitField("Submit")
+
+    def check_email(self,field):
+        if(Our_customer.query.filter_by(email=field.data).first()):
+            raise ValidationError("Already registered")
 
 class InvoiceForm(FlaskForm):
     client= TextField("Client:",validators=[DataRequired()])

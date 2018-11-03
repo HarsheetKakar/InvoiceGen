@@ -6,6 +6,7 @@ from InvoiceGen import app, db
 from InvoiceGen.forms import InvoiceForm, LoginForm, SignupForm
 from InvoiceGen.models import Our_customer
 from flask_bcrypt import Bcrypt
+from flask_login import login_user,login_required,logout_user
 import os
 
 logged_in=False
@@ -17,29 +18,11 @@ Migrate(app,db)
 hash= Bcrypt(app)
 
 @app.route('/home')
+@login_required
 def home():
-    if(not logged_in):
-        return redirect(url_for('login'))
     return render_template('home.html')
 
-@app.route("/",methods=['GET','POST'])
-@app.route('/login',methods=['GET','POST'])
-def login():
-    form= LoginForm()
-    if(form.validate_on_submit()):
-        session['email']=form.email.data
-        session['password']=form.password.data
-        user=Our_customer.query.filter_by(email=session["email"])
-        if(user and hash.check_password_hash(user.first().password,session['password'])):
-            logged_in=True
-            return redirect(url_for("home"))
-        else:
-           return redirect(url_for("login"))
-    return render_template('login.html', form =form)
 
-@app.route('/logged_in')
-def logged_in():
-    return render_template("logged_in.html")
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
@@ -57,11 +40,12 @@ def signup():
         new_owner.total_payable=0
         db.session.add(new_owner)
         db.session.commit()
-        return redirect(url_for("logged_in"))
+        return redirect(url_for("login"))
     return render_template("signup.html",form=form)
 
 
 @app.route('/invoice',methods=['GET','POST'])
+@login_required
 def invoice():
     if(logged_in):
         form= InvoiceForm()
@@ -88,19 +72,25 @@ def invoice():
         return redirect(url_for('login'))
     return render_template('invoice.html',form=form)
 
-def download_page():
-    a=Our_customer.query.filter_by(email=session["email"]).first()
-    client= Client(session['client'])
-    provider= Provider(a.name, bank_account=a.gstnumber, bank_code='2018')
-    creator= Creator(session['creator'])
+@app.route("/",methods=['GET','POST'])
+@app.route('/login',methods=['GET','POST'])
+def login():
+    form= LoginForm()
+    if(form.validate_on_submit()):
+        session['email']=form.email.data
+        session['password']=form.password.data
+        user=Our_customer.query.filter_by(email=session['email']).first()
+        if(user.check_password(password=session['password'])):
+            login_user(user)
+            next= request.args.get('next')
+            if(next == None):
+                return redirect(url_for('home'))
+            return redirect(next)
+        else:
+           return redirect(url_for("login"))
+    return render_template('login.html', form =form)
 
-    invoice=Invoice(client,provider,creator)
-    invoice.currency_locale="en_US.UTF_8"
 
-    invoice.add_item(Item(session['quantity'],session['price'],session['item_name']))
-    from InvoiceGenerator.pdf import SimpleInvoice
-    pdf=SimpleInvoice(invoice)
-    pdf.gen("invoice.pdf",generate_qr_code=True)
 
 if __name__ == '__main__':
     app.run(debug= True)
