@@ -5,6 +5,7 @@ from InvoiceGenerator.api import Invoice,Item,Client,Provider,Creator
 from InvoiceGen import app, db
 from InvoiceGen.forms import InvoiceForm, LoginForm, SignupForm
 from InvoiceGen.models import Our_customer
+from flask_bcrypt import Bcrypt
 import os
 
 logged_in=False
@@ -12,6 +13,8 @@ logged_in=False
 db.create_all()
 
 Migrate(app,db)
+
+hash= Bcrypt(app)
 
 @app.route('/home')
 def home():
@@ -26,8 +29,8 @@ def login():
     if(form.validate_on_submit()):
         session['email']=form.email.data
         session['password']=form.password.data
-        print(Our_customer.query.filter_by(email=session["email"]).first().name)
-        if(Our_customer.query.filter_by(email=session["email"])and Our_customer.query.filter_by(password=session["password"])):
+        user=Our_customer.query.filter_by(email=session["email"])
+        if(user and hash.check_password_hash(user.first().password,session['password'])):
             logged_in=True
             return redirect(url_for("home"))
         else:
@@ -45,7 +48,7 @@ def signup():
     if form.validate_on_submit():
         new_owner.name= form.fname.data+" "+form.lname.data
         new_owner.email= form.email.data
-        new_owner.password= form.password.data
+        new_owner.password= hash.generate_password_hash(form.password.data)
         new_owner.gstnumber= form.gstnumber.data
         new_owner.companyname= form.companyname.data
         new_owner.phone= form.phone.data

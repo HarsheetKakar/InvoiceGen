@@ -14,7 +14,7 @@ class Our_customer(db.Model):
     address= db.Column(db.String(120))
     phone= db.Column(db.Integer())
 
-class Items(db.Model):
-    __tablename__= 'Items'
-
-    id= db.Column(db.Integer(),)
+# class Items(db.Model):
+#     pass
+#
+#     id= db.Column(db.Integer(),)
