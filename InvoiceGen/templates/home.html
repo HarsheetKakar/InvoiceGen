@@ -1,10 +1,12 @@
-<!-- font-family: 'Alegreya SC', serif; -->
+<!-- font-family: 'Alegreya SC', serif;
+      <a href="{{url_for('invoice')}}">
+ -->
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome</title>
-	<link rel="stylesheet" type="text/css" href="/static/home.css">
+	<link rel="stylesheet" type="text/css" href="C:\Users\arvind kumar\Desktop\gitHarsheetRepo\InvoiceGen\InvoiceGen\static\home.css">
 </head>
 <body>
       	<ul>
@@ -12,42 +14,42 @@
       		<li>Dashboard</li>
 
       		<li>Sale
-              	    <ul id="temp">
-      		    	<li><p>Estimates</p></li>
-      		    	<li><p>Sales Orders</li>
-      		    	<li><p>Delivery Challans</li>
-      		    	<li><a href="{{url_for('invoice')}}">Invoices</li>
-      		    	<li><p>Payment Received</li>
-      		    	<li><p>Recurring Invoices</p></li>
-      		    	<li><p>Credit Notes</li>
-      		    </ul>
+              	    
+      		    	<button class="starting" onclick='location.href="{{url_for()}}"'>Estimates</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Sales Orders</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Delivery Challans</button>
+      		    	<button onclick='location.href="{{url_for('invoice.html')}}"'>Invoices</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Payment Received</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Recurring Invoices</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Credit Notes</button>
+      		    
       		</li>
 
       		<li>Purchases
-      		    <ul>
-      		    	<li>Expenses</li>
-      		    	<li>Recurring Expenses</li>
-      		    	<li>Purchase Orders</li>
-      		    	<li>Bills</li>
-      		    	<li>Payment Made</li>
-      		    	<li>Recurring Bills</li>
-      		    	<li>Vendor Credits</li>
-      		    </ul>
+      		
+      		    	<button class="starting" onclick='location.href="{{url_for()}}"'>Expenses</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Recurring Expenses</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Purchase Orders</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Bills</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Payment Made</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Recurring Bills</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Vendor Credits</button>
+      		
        		</li>
 
       		<li>Time Tracking
-      	     	    <ul>
-      		    	<li>Projects</li>
-      		    	<li>Timesheet</li>
-      		    </ul>
+      	     	
+      		    	<button class="starting" onclick='location.href="{{url_for()}}"'>Projects</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Timesheet</button>
+      		
       		</li>
       		<li>Accountant
-      		    <ul>
-      		    	<li>Manual Journals</li>
-      		    	<li>Currency Adjustment</li>
-      		    	<li>Chart of Accounts</li>
-      		    	<li>Transation Locking</li>
-      		    </ul>
+      		    
+      		    	<button class="starting" onclick='location.href="{{url_for()}}"'>Manual Journals</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Currency Adjustment</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Chart of Accounts</button>
+      		    	<button onclick='location.href="{{url_for()}}"'>Transation Locking</button>
+      		    
       		</li>
 
       	</ul>
