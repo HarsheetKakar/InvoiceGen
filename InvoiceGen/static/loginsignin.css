@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Acme');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:500i'); 
+
+body {
+	background-image: url('back2.jpeg');
+	background-size: cover;
+	color: white;
+	font-family: Acme, 'sans-serif';
+	font-size: 25px;
+}
+
+button {
+	background-color: transparent;
+	border-style: none;
+	color: white;
+	font-family: Acme, 'sans-serif';
+	font-size: 25px;
+}
+
+#loginformdiv {
+	margin: 150px 35% 0px 30%;
+	padding: 50px;
+	border-radius: 10px;
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 5px black;
+
+}
+
+#signupformdiv {
+	margin: 0px 35% 0px 30%;
+	padding: 50px;
+	border-radius: 10px;
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 5px black;
+}
+
+#loginformsignupbut {
+	margin: 0px 0px 0px 70%;
+	cursor: pointer;
+}
