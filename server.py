@@ -4,7 +4,7 @@ from tempfile import NamedTemporaryFile
 from InvoiceGenerator.api import Invoice,Item,Client,Provider,Creator
 from InvoiceGen import app, db
 from InvoiceGen.forms import InvoiceForm, LoginForm, SignupForm
-from InvoiceGen.models import Our_customer
+from InvoiceGen.models import Our_customer, load_user
 from flask_bcrypt import Bcrypt
 from flask_login import login_user,login_required,logout_user
 import os
@@ -22,7 +22,49 @@ hash= Bcrypt(app)
 def home():
     return render_template('home.html')
 
+@app.route('/invoice',methods=['GET','POST'])
+@login_required
+def invoice():
+    form= InvoiceForm()
+    print(form)
+    if form.validate_on_submit():
+        client=form.client.data
+        creator=form.creator.data
+        item_name=form.item_name.data
+        price=form.price.data
+        quantity=form.quantity.data
+        a=Our_customer.query.filter_by(email=session["email"]).first()
+        client= Client(client)
+        provider= Provider(a.name, bank_account=a.gstnumber, bank_code='2018')
+        creator= Creator(creator)
+        os.environ["INVOICE_LANG"]="en"
+        invoice=Invoice(client,provider,creator)
+        invoice.currency_locale="en_US.UTF_8"
 
+        invoice.add_item(Item(quantity,price,item_name))
+        from InvoiceGenerator.pdf import SimpleInvoice
+        pdf=SimpleInvoice(invoice)
+        pdf.gen("invoice.pdf",generate_qr_code=False)
+        return send_file("invoice.pdf")
+    return render_template('invoice.html',form=form)
+
+@app.route("/",methods=['GET','POST'])
+@app.route('/login',methods=['GET','POST'])
+def login():
+    form= LoginForm()
+    if(form.validate_on_submit()):
+        email=form.email.data
+        password=form.password.data
+        user=Our_customer.query.filter_by(email=email).first()
+        if(user.check_password(password=password) and user is not None):
+            login_user(user)
+            print(user.is_active)
+            next= request.args.get('next')
+            print(next)
+            if next == None or not next[0]=='/':
+                next = url_for('home')
+            return redirect(next)
+    return render_template('login.html', form =form)
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
@@ -43,54 +85,12 @@ def signup():
         return redirect(url_for("login"))
     return render_template("signup.html",form=form)
 
-
-@app.route('/invoice',methods=['GET','POST'])
+@app.route('/logged_out')
 @login_required
-def invoice():
-    if(logged_in):
-        form= InvoiceForm()
-        if form.validate_on_submit():
-            session['client']=form.client.data
-            session['creator']=form.creator.data
-            session['item_name']=form.item_name.data
-            session['price']=form.price.data
-            session['quantity']=form.quantity.data
-            a=Our_customer.query.filter_by(email=session["email"]).first()
-            client= Client(session['client'])
-            provider= Provider(a.name, bank_account=a.gstnumber, bank_code='2018')
-            creator= Creator(session['creator'])
-            os.environ["INVOICE_LANG"]="en"
-            invoice=Invoice(client,provider,creator)
-            invoice.currency_locale="en_US.UTF_8"
-
-            invoice.add_item(Item(session['quantity'],session['price'],session['item_name']))
-            from InvoiceGenerator.pdf import SimpleInvoice
-            pdf=SimpleInvoice(invoice)
-            pdf.gen("invoice.pdf",generate_qr_code=True)
-            return send_file("invoice.pdf")
-    else:
-        return redirect(url_for('login'))
-    return render_template('invoice.html',form=form)
-
-@app.route("/",methods=['GET','POST'])
-@app.route('/login',methods=['GET','POST'])
-def login():
-    form= LoginForm()
-    if(form.validate_on_submit()):
-        session['email']=form.email.data
-        session['password']=form.password.data
-        user=Our_customer.query.filter_by(email=session['email']).first()
-        if(user.check_password(password=session['password'])):
-            login_user(user)
-            next= request.args.get('next')
-            if(next == None):
-                return redirect(url_for('home'))
-            return redirect(next)
-        else:
-           return redirect(url_for("login"))
-    return render_template('login.html', form =form)
-
-
+def logout():
+    print("logged out")
+    logout_user()
+    return "logged out"
 
 if __name__ == '__main__':
     app.run(debug= True)
