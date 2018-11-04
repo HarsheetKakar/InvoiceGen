@@ -22,10 +22,16 @@ class Our_customer(db.Model,UserMixin):
     companyname = db.Column(db.String(120))
     address= db.Column(db.String(120))
     phone= db.Column(db.Integer())
+    items= db.relationship('Items', backref='Our_customer', lazy=True)
 
     def check_password(self,password):
         return hash.check_password_hash(self.password, password)
-# class Items(db.Model):
-#     pass
-#
-#     id= db.Column(db.Integer(),)
+
+class Items(db.Model):
+    __tablename__= 'Items'
+    id= db.Column(db.Integer(), primary_key= True)
+    name= db.Column(db.String())
+    price= db.Column(db.Integer())
+    quantity= db.Column(db.Integer())
+    coming_on= db.Column(db.DateTime())
+    user_id= db.Column(db.Integer(), db.ForeignKey('Our_customer.id'), nullable= False)
