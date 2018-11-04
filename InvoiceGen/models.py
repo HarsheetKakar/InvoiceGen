@@ -6,6 +6,7 @@ hash=Bcrypt(app)
 
 @login_manager.user_loader
 def load_user(userid):
+    print(Our_customer.query.get(userid))
     return Our_customer.query.get(userid)
 
 class Our_customer(db.Model,UserMixin):

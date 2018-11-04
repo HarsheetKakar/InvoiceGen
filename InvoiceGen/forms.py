@@ -21,7 +21,7 @@ class SignupForm (FlaskForm):
     submit=SubmitField("Submit")
 
     def check_email(self,field):
-        if(Our_customer.query.filter_by(email=field.data).first()):
+        if(self.query.filter_by(email=field.data).first()):
             raise ValidationError("Already registered")
 
 class InvoiceForm(FlaskForm):
