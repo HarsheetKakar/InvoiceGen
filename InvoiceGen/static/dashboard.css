@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Acme');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:500i'); 
+
+body {
+	background-image: url('back2.jpeg');
+	background-size: cover;
+	color: white;
+	font-family: Acme, 'sans-serif';
+}
+
+ul {
+	cursor: default;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+button {
+	cursor: pointer;
+	background-color: transparent;
+	width: 260px;
+	height: 40px;
+	border-style: none;
+	color: white;
+	font-family: Acme, 'sans-serif';
+	font-size:  30px;
+	display: block;
+	text-align: center;
+}
+
+ul li {
+	float: left;
+	width: 260px;
+	height: 40px;
+	background-color: rgba(0,0,0,0.4);
+	text-align: center;
+	font-size: 35px;
+	line-height: 40px;
+	padding: 10px 0px 10px 0px;
+}
+
+ul li:hover{
+	background-color: rgba(0,0,0,0.7);
+}
+
+button:hover {	
+	background-color: rgba(0,0,0,0.7);
+}
+
+ul li button {
+	display: none;
+}
+
+ul li:hover button {
+	display: block;
+	font-size: 22px;
+}
+
+.starting {
+	margin-top: 10px;
+}
+
+#dashheading {
+	background-color: rgba(0,0,0,0);
+	font-size: 50px;
+}
+
+#theory {
+	margin: 25% 0px 0px 0px;
+	font-size: 23px;
+}

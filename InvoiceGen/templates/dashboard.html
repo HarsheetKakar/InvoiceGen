@@ -1,0 +1,65 @@
+<!-- font-family: 'Alegreya SC', serif;
+      <a href="{{url_for('invoice')}}">
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" type="text/css" href="/static/dashboard.css">
+</head>
+<body>
+      <div>
+
+      	<ul>
+      		<li id="dashheading">Dashboard</li>
+
+      		<li>Sale
+      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Estimates</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Sales Orders</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Delivery Challans</button>
+      		    	<button onclick="location.href='{{url_for('invoice')}}'">Invoices</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Payment Received</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Recurring Invoices</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Credit Notes</button>
+      		</li>
+
+      		<li>Purchases
+      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Expenses</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Recurring Expenses</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Purchase Orders</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Bills</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Payment Made</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Recurring Bills</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Vendor Credits</button>
+       		</li>
+
+      		<li>Time Tracking
+      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Projects</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Timesheet</button>
+      		</li>
+      		<li>Accountant
+      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Manual Journals</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Currency Adjustment</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Chart of Accounts</button>
+      		    	<button onclick="location.href='{{url_for('home')}}'">Transation Locking</button>
+      		</li>
+            </ul>
+
+            <br>
+            <br>
+            <br>
+
+            <div id="theory">
+                  <p>Our second financial dashboard template provides an overview of your liquidity and current cash flow situation, while providing you with a strong indication or how you can improve these metrics situation by optimizing processes handling Accounts Payable and Accounts Receivable. In detail it is giving you a quick overview of the Quick Ratio, Current Ratio, Cash Balance and your outstanding debts.</p>
+            
+                  <p>At first, the cash management dashboard examines your Current Ratio and your Quick Ratio. The Current Ratio is a financial metric that indicates the liquidity of a company and its ability to pay short-term liabilities (debt and payables) with its short-term assets (cash, inventory, receivables). This KPI is simply the ratio between current liabilities and current assets and demonstrates the flexibility your company has in immediately using money for acquisitions or to pay off debts. You should always aim to have a ratio higher than 1:1 to make sure that you can pay your obligations at any time. This financial dashboard affords you the opportunity to immediately ensure that your company has the financial fluidity that it needs to survive and thrive.</p>
+            
+                  <p>The Quick Ratio, also referred to as an Acid-Ratio-Test, gives a more conservative view on the liquidity situation and does not include inventory and other less liquid assets as part of the short-term assets to meet the liabilities. If your current assets include a lot of inventory, your Acid Test Ratio will be much lower than your Current Ratio. Similar to the Current Ratio, a Quick Ratio greater than 1 indicates that your business is able to pay the current liabilities with the most liquid assets. Both ratios in this financial dashboard template are greatly influenced by your Accounts Payable and Accounts Receivable Turnover, which measure on the one hand at which speed you pay your own bills and on the other hand how fast you are collecting your payments owed. </p>
+            
+                  <p>Last but not least our financial dashboard example provides an immediate visualization of your current Accounts Payable and Accounts Receivable situation. It affords you an opportunity to quickly reflect on your current expenditures and money to be collected in order to ensure that no payments remain outstanding for too long, and similarly that payments you owe do not take you into arrears. At the bottom of the dashboard the Accounts Receivable information is broken down over the course of a year, whereby you may analyze payment and debt collection patterns as they relate to your Current and Quick Ratios, the two litmus tests of the financial liquidity and stability of your enterprise.</p>
+            </div>
+
+      </div>
+</body>
+</html>
