@@ -6,7 +6,7 @@ from InvoiceGen import app, db
 from InvoiceGen.forms import InvoiceForm, LoginForm, SignupForm
 from InvoiceGen.models import Our_customer, load_user
 from flask_bcrypt import Bcrypt
-from flask_login import login_user,login_required,logout_user
+from flask_login import login_user,login_required,logout_user, current_user
 import os
 
 logged_in=False
@@ -33,7 +33,7 @@ def invoice():
         item_name=form.item_name.data
         price=form.price.data
         quantity=form.quantity.data
-        a=Our_customer.query.filter_by(email=session["email"]).first()
+        a=current_user
         client= Client(client)
         provider= Provider(a.name, bank_account=a.gstnumber, bank_code='2018')
         creator= Creator(creator)
