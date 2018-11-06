@@ -10,7 +10,7 @@
 			{{form.hidden_tag()}}	<br>
 			{{form.email.label}} <br> {{form.email()}}	<br>
 			{{form.password.label}} <br> {{form.password()}}	<br>
-			{{form.submit()}}
+			{{form.submit(class_="submitbut")}}
 		</form>
 		<button id="loginformsignupbut" type="button" name="button" onclick="location.href='{{url_for('signup')}}'">Sign Up</button>
 	</div>

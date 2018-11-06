@@ -1,57 +1,20 @@
-<!-- font-family: 'Alegreya SC', serif;
-      <a href="{{url_for('invoice')}}">
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome</title>
+	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="/static/home.css">
 </head>
 <body>
-      	<ul>
 
-      		<li>Dashboard</li>
-
-      		<li>Sale
-
-      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Estimates</button>
-      		    	<button onclick=="location.href='{{url_for('home')}}'">Sales Orders</button>
-      		    	<button onclick=="location.href='{{url_for('home')}}'">Delivery Challans</button>
-      		    	<button onclick="location.href='{{url_for('invoice')}}'">Invoices</button>
-      		    	<button onclick=="location.href='{{url_for('home')}}'">Payment Received</button>
-      		    	<button onclick=="location.href='{{url_for('home')}}'">Recurring Invoices</button>
-      		    	<button onclick=="location.href='{{url_for('home')}}'">Credit Notes</button>
-
-      		</li>
-
-      		<li>Purchases
-
-      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Expenses</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Recurring Expenses</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Purchase Orders</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Bills</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Payment Made</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Recurring Bills</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Vendor Credits</button>
-
-       		</li>
-
-      		<li>Time Tracking
-
-      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Projects</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Timesheet</button>
-
-      		</li>
-      		<li>Accountant
-
-      		    	<button class="starting" onclick="location.href='{{url_for('home')}}'">Manual Journals</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Currency Adjustment</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Chart of Accounts</button>
-      		    	<button onclick="location.href='{{url_for('home')}}'">Transation Locking</button>
-
-      		</li>
-
-      	</ul>
+	<header>
+		<button id="companybut"><b>Fintech</b></button>
+		<button class="inupbut" onclick="location.href='{{url_for('login')}}'">Login</button>
+		<button class="inupbut" onclick="location.href='{{url_for('signup')}}'">Signup</button>
+	</header>
+	<div id="empty"></div>
+	<div id="slog"><h1>Life’s Better When We’re Connected!</h1></div>
+	<div>
+		<button id="getstarted" onclick="location.href='{{url_for('login')}}'"><b>Lets Get Started</b></button>
+	</div>
 </body>
 </html>

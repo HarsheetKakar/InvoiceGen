@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Acme');
-@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:500i'); 
 
 body {
 	background-image: url('back2.jpeg');
@@ -8,55 +7,72 @@ body {
 	font-family: Acme, 'sans-serif';
 }
 
-ul {
-	cursor: default;
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
+header {
+	float: top;
+	height: 70px;
+	margin-top: 10px;
 }
 
-button {
+.inupbut {
+	float: right;
 	cursor: pointer;
 	background-color: transparent;
-	width: 260px;
-	height: 40px;
+	width: 150px;
+	height: 60px;
 	border-style: none;
 	color: white;
 	font-family: Acme, 'sans-serif';
 	font-size:  30px;
-	display: block;
 	text-align: center;
 }
 
-ul li {
-	float: left;
-	width: 260px;
-	height: 40px;
-	background-color: rgba(0,0,0,0.4);
-	text-align: center;
+
+.inupbut:hover {	
+	background-color: rgba(0,0,0,0.7);
 	font-size: 35px;
-	line-height: 40px;
-	padding: 10px 0px 10px 0px;
+	border-radius: 8px;
 }
 
-ul li:hover{
+#empty {
+	height: 4px;
 	background-color: rgba(0,0,0,0.7);
 }
 
-button:hover {	
+#slog {
+	text-align: center;
 	background-color: rgba(0,0,0,0.7);
+	margin: 10px 20% 0px 20%;
+	padding: 0px 0px;
+	border-radius: 10px;
+	font-size: 25px;
+}
+#companybut {
+	background-color: transparent;
+	width: 150px;
+	height: 60px;
+	border-style: none;
+	color: white;
+	font-family: Acme, 'sans-serif';
+	text-align: center;
+	cursor: default;
+	float: left;
+	font-size: 35px;
 }
 
-ul li button {
-	display: none;
+#heading:hover {
+	background-color: rgba(0,0,0,0);
 }
 
-
-ul li:hover button {
-	display: block;
-	font-size: 22px;
-}
-
-.starting {
-	margin-top: 10px;
+#getstarted {
+	border-style: none;
+	background-color: yellow;
+	color: black;
+	cursor: pointer;
+	width: 300px;
+	height: 70px;
+	border-style: none;
+	font-family: Acme, 'sans-serif';
+	font-size:  35px;
+	text-align: center;
+	margin: 100px 0px 0px 37%;
 }

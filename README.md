@@ -1,3 +1,5 @@
 # InvoiceGenerator
 Makes invoices using invoice library
-and nothing else
+
+to install packages from requirements.txt use:
+pip install -r requirements.txt
